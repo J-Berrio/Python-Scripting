@@ -1,0 +1,9 @@
+//Stick Arm
+polyCylinder -r 0.1 -h 4 -sx 8 -sy 1 -sz 1 -ax 0 1 0 -rcp 0 -cuv 3 -ch 1;
+move -r 0 8.7 0 ;
+move -r 2 0 0 ;
+rotate -r -os -fo 0 0 -38.5 ;
+select -r pCylinder1.f[0:7] pCylinder1.f[16:23] ;
+select -tgl pCylinder1.f[0:7] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 3.245029279 -pvy 10.26521631 -pvz 3.725290298e-009 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCylinder1.f[16:23];
+// Result: polyExtrudeFace1 // 
