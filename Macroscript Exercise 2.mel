@@ -1,0 +1,42 @@
+polyCube -w 6 -h 1 -d 6 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 0.5 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace1 // 
+scale -ws -r -p 0cm 0.5cm 0cm 0.818424 0.818424 0.818424 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 0.5000002384 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace2 // 
+move -r 0 0.947554 0 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 1.44755435 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace3 // 
+scale -ws -r -p 0cm 1.447554cm 0cm 0.768263 0.768263 0.768263 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 1.44755435 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace4 // 
+move -r 0 0.875685 0 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 2.323239803 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace5 // 
+scale -ws -r -p 0cm 2.32324cm 0cm 0.752268 0.752268 0.752268 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 2.323239803 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace6 // 
+move -r 0 0.722536 0 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 3.04577589 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace7 // 
+scale -ws -r -p 0cm 3.045776cm 0cm 0.68232 0.68232 0.68232 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 3.04577589 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace8 // 
+move -r 0 0.561853 0 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 3.607629299 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace9 // 
+scale -ws -r -p 0cm 3.607629cm 0cm 0.406318 0.406318 0.406318 ;
+select -r pCube1.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 3.607629299 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[1];
+// Result: polyExtrudeFace10 // 
+move -r 0 1.124411 0 ;
+

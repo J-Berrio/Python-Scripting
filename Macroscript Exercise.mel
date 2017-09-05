@@ -1,0 +1,47 @@
+polyCube -w 4 -h 0.5 -d 4 -sx 5 -sy 1 -sz 5 -ax 0 1 0 -cuv 4 -ch 1;
+hilite pCube1.f[35] pCube1.f[39] pCube1.f[55] pCube1.f[59] ;
+selectMode -component ;
+select -r pCube1.f[35] pCube1.f[39] pCube1.f[55] pCube1.f[59] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy -0.25 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[35] pCube1.f[39] pCube1.f[55] pCube1.f[59];
+move -r 0 -4.216884 0 ;
+//Chair Base Made
+hilite pCube1 ;
+select -r pCube1.f[25] ;
+select -tgl pCube1.f[29] ;
+select -r pCube1.f[25] pCube1.f[29] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 0.25 -pvz -1.600000024 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[25] pCube1.f[29];
+// Result: polyExtrudeFace2 // 
+move -r 0 4.281073 0 ;
+scale -ws -r -p 0cm 4.531073cm -1.6cm 1.402066 1 1 ;
+select -cl  ;
+select -r pCube1.e[87] ;
+select -add pCube1.e[63] pCube1.e[69] pCube1.e[75] pCube1.e[81] pCube1.e[87] pCube1.e[93] pCube1.e[99] pCube1.e[105] pCube1.e[111] pCube1.e[117] pCube1.e[123] pCube1.e[129] ;
+select -tgl pCube1.e[86] ;
+select -add pCube1.e[62] pCube1.e[68] pCube1.e[74] pCube1.e[80] pCube1.e[86] pCube1.e[92] pCube1.e[98] pCube1.e[104] pCube1.e[110] pCube1.e[116] pCube1.e[122] pCube1.e[128] ;
+select -tgl pCube1.e[22] ;
+select -add pCube1.e[20:24] pCube1.e[45:49] pCube1.e[133] pCube1.e[137] ;
+select -tgl pCube1.e[17] ;
+select -add pCube1.e[15:19] pCube1.e[50:54] pCube1.e[134] pCube1.e[138] ;
+polyDelEdge -cv true -ch 1 pCube1.e[15:24] pCube1.e[45:54] pCube1.e[62:63] pCube1.e[68:69] pCube1.e[74:75] pCube1.e[80:81] pCube1.e[86:87] pCube1.e[92:93] pCube1.e[98:99] pCube1.e[104:105] pCube1.e[110:111] pCube1.e[116:117] pCube1.e[122:123] pCube1.e[128:129] pCube1.e[133:134] pCube1.e[137:138];
+//base of chair made until here with basic back piece
+select -r pCube1.e[100:101] pCube1.e[103] pCube1.e[105] ;
+//marquee selection the four edges to be selected
+polySplitRing -ch on -splitType 1 -weight 0.215076 -smoothingAngle 30 -fixQuads 1 -insertWithEdgeFlow 0 ;
+// Result: polySplitRing1 // 
+select -r pCube1.e[100:101] pCube1.e[103] pCube1.e[105] ;
+//copied and pasted same selection for the second insert edge loop
+polySplitRing -ch on -splitType 1 -weight 0.522453 -smoothingAngle 30 -fixQuads 1 -insertWithEdgeFlow 0 ;
+// Result: polySplitRing2 // 
+//You need to make sure you have the edge selection listed in the script so that
+//when Maya recalculates the edge numbers after an insert edge loop
+//it will know which edges to when you run it...especially twice like in this example
+select -r pCube1.e[92:93] pCube1.e[95] pCube1.e[97] ;
+polySplitRing -ch on -splitType 1 -weight 0.212854 -smoothingAngle 30 -fixQuads 1 -insertWithEdgeFlow 0 ;
+select -r pCube1.e[92:93] pCube1.e[95] pCube1.e[97] ;
+polySplitRing -ch on -splitType 1 -weight 0.530126 -smoothingAngle 30 -fixQuads 1 -insertWithEdgeFlow 0 ;
+//works
+select -r pCube1.f[58] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 1.278992355 -pvy 0.9509039521 -pvz -1.600000024 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 pCube1.f[58];
+move -r -2.81385 0 0 ;
+move -r 0.20112 0 0 ;
+//works

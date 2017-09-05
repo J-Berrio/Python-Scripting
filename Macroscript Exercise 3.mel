@@ -1,0 +1,65 @@
+polySphere;
+// Result: pSphere1 polySphere1 // 
+select -r pSphere1 ;
+selectKey -clear ;
+// Result: 0 // 
+move -r 0 7.313763 0 ;
+move -r -4.108818 0 0 ;
+rename "pSphere1" "Moon";
+polyCube -w 6 -h 0.5 -d 6 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+rename "pCube1" "Temple";
+select -r Temple.f[1] ;
+hilite Temple.f[1] ;
+selectMode -component ;
+select -r Temple.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 0.25 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 Temple.f[1];
+// Result: polyExtrudeFace1 // 
+scale -ws -r -p 0cm 0.25cm 0cm 0.802895 0.802895 0.802895 ;
+select -r Temple.f[1] ;
+polyExtrudeFacet -constructionHistory 1 -keepFacesTogether 1 -pvx 0 -pvy 0.25 -pvz 0 -divisions 1 -twist 0 -taper 1 -off 0 -thickness 0 -smoothingAngle 30 Temple.f[1];
+// Result: polyExtrudeFace2 // 
+move -r 0 3.02654 0 ;
+hilite Temple.f[1] ;
+select -add Temple.f[1] ;
+hilite -r Temple ;
+select -d Temple.f[1] ;
+select -add Temple.f[1] ;
+select -r Temple.f[3] ;
+doDelete;
+//deleted bottome face and now its hollow yay
+select -cl  ;
+select -r Moon ;
+select -tgl Temple ;
+parent;
+// Result: Moon // 
+polyPlane -w 60 -h 60 -sx 10 -sy 10 -ax 0 1 0 -cuv 2 -ch 1;
+rename "pPlane1" "Ground";
+//works-added ground
+polyCube -w 5 -h 1 -d 5 -sx 1 -sy 1 -sz 1 -ax 0 1 0 -cuv 4 -ch 1;
+rename "pCube1" "Solary";
+move -r -7 0.5 -8 ;
+//works-added solary.
+duplicate -rr;
+move -r 13 0.2 0 ;
+rename "Solary1" "Conservatory";
+//works-added conservatory
+hilite Temple.f[1] ;
+select -add Temple.f[1] ;
+// Result: Conservatory // 
+select -cl  ;
+select -r Conservatory ;
+selectKey -clear ;
+// Result: 0 // 
+select -r Conservatory Solary ;
+selectKey -clear ;
+// Result: 0 // 
+select -r Conservatory Solary Ground ;
+selectKey -clear ;
+// Result: 0 // 
+doGroup 0 1 1;
+select -r group1 ;
+selectKey -clear ;
+// Result: 0 // 
+rename "group1" "Temple_Buildings";
+// Result: Temple_Buildings // 
+
