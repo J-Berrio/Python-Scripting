@@ -1,0 +1,12 @@
+proc RenamingScript ( string $newName, string $suffix)
+{
+    string $sels[] = `ls -sl`;
+    for ($i = 0; $i < size($sels); $i++)
+    {
+           //select $sels[0];
+           //renameSelectionList ("$newName" + "$num" + "$suffix");
+           rename $sels[$i] ($newName + "_0" + ($i+1) + "_" + $suffix);
+    }
+}
+
+RenamingScript ("cube", "jnt");
