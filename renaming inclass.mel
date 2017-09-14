@@ -1,16 +1,12 @@
 //Clayton's Inclass Version
 
-proc Rename ()
+proc string[] Rename (string $name)
 {
     string $sels[] = `ls -sl`;
-    string $name = "Test_#_Geo";
     string $buffer[];
-    int $numTokens;
-    string $returnNames[];
-    
-    $numTokens = `tokenize $name "#" $buffer`; 
-    //splits up the string into two sections, the part before # and the
-    //part after and gives them a number in the buffer array
+    int $numTokens = `tokenize $name "#" $buffer`;;
+    string $returnNames[]; 
+
     if($numTokens != 2)
     {
         error("Too many hashtag symbols.");
@@ -25,4 +21,4 @@ proc Rename ()
     
      return $returnNames;
 }
-Rename();
+Rename("Jnt_#_Grp");
