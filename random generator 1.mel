@@ -1,0 +1,17 @@
+string $sels[] = `ls -sl`;
+string $sel = $sels[0];
+int $boxNum = 15;
+float $boxY;
+float $boxX;
+float $boxZ;
+
+for ($i = 0; $i < $boxNum; $i++)
+{
+string $newSel[];
+$newSel = `duplicate -rr $sel`;
+$sel = $newSel[0];
+$boxY = rand(10);
+$boxZ = rand(10);
+$boxX = rand(10);
+move -os -wd $boxX $boxY $boxZ;
+}
