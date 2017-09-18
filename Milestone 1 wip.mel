@@ -1,0 +1,7 @@
+string $sels[] = `ls -sl`;
+
+    for($i = 0; $i < size($sels);$i++)
+        {
+        spaceLocator -n ("loc"+$i) -p 0 0 0 ;
+        matchTransform ("loc"+$i) $objs[$i];
+        }
