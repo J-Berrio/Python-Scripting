@@ -1,7 +1,19 @@
-string $sels[] = `ls -sl`;
+string $objs[] = `ls -sl`;
+string $buffer[]; 
+string $tempName ;
 
-    for($i = 0; $i < size($sels);$i++)
+    for($i = 0; $i < size($objs); $i++)
         {
-        spaceLocator -n ("loc"+$i) -p 0 0 0 ;
-        matchTransform ("loc"+$i) $objs[$i];
+        clear $buffer; 
+        tokenize $objs[$i] "_" $buffer; 
+        $tempName = $buffer[0];
+        circle -n ($tempName + ($i + 1))  ;
+        doGroup 0 1 1; 
+        rename ($tempName + ($i + 1) + "_Grp");
+        matchTransform ($tempName + ($i + 1) + "_Grp") $objs[$i];
         }
+        
+    for($i = 0; $i < size($objs); $i++)
+    {
+        
+    }
