@@ -1,28 +1,38 @@
 string $objs[] = `ls -sl`;
 string $buffer[] ; 
 string $tempName ;
-//string $prevCtrl = "null" ;
-string $currentCtrl ;
+
 
     for($i = 0; $i < size($objs); $i++)
-    {
-//Creates the controls, renames, groups, and places them at the joint. 
-        clear $buffer ; 
-        tokenize $objs[$i] "_" $buffer ; 
-        $tempName = $buffer[0] ;
-        string $controls[0] = `circle -n ($tempName+ ($i + 1) + "_Ctrl")` ;
-        doGroup 0 1 1 ; 
-        rename ($tempName + ($i + 1) + "_Grp") ;
-        matchTransform ($tempName + ($i + 1) + "_Grp") $objs[$i] ;
-        
-//        
-        //$controls = ($tempName+ ($i + 1) + "_Ctrl") ;
-        $currentCtrl = ($tempName + ($i + 1) + "_Grp") ;
-        if($controls && $currentCtrl != "null")
         {
-            select $currentCtrl ;
-            select $controls ; 
-            parent ;
+    //Creates the controls, renames, groups, and places them at the joint. 
+            clear $buffer ; 
+            tokenize $objs[$i] "_" $buffer ; 
+            string $tempName = $buffer[0] ;
+            string $controls[] = `circle -n ($tempName+ ($i + 1) + "_Ctrl")` ;
+            string $groups = `group` ; 
+            rename ($tempName + ($i + 1) + "_Grp") ;
+            matchTransform ($tempName + ($i + 1) + "_Grp") $objs[$i] ;
+            
+    //Parents groups to controls.         
+            if ($i >=1 )
+                {
+                    parent ($tempName + ($i + 1) + "_Grp") ($tempName+ ($i) + "_Ctrl") ;   
+                }
+          
+    //Parent & scale constraints. 
+        parentConstraint -mo ($tempName+ ($i + 1) + "_Ctrl") $objs[$i] ;
+        scaleConstraint -mo ($tempName+ ($i + 1) + "_Ctrl") $objs[$i] ;
+        
+    //Group hierarchy. 
+            
+            if(`objExists "Controls")
+                {
+                    parent  ($tempName + ($i + 1) + "_Grp") ("Controls") ;
+                }
         }
-    }
+        
+               
+        
+
   
