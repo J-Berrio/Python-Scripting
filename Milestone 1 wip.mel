@@ -1,19 +1,28 @@
 string $objs[] = `ls -sl`;
-string $buffer[]; 
+string $buffer[] ; 
 string $tempName ;
+//string $prevCtrl = "null" ;
+string $currentCtrl ;
 
     for($i = 0; $i < size($objs); $i++)
-        {
-        clear $buffer; 
-        tokenize $objs[$i] "_" $buffer; 
-        $tempName = $buffer[0];
-        circle -n ($tempName + ($i + 1))  ;
-        doGroup 0 1 1; 
-        rename ($tempName + ($i + 1) + "_Grp");
-        matchTransform ($tempName + ($i + 1) + "_Grp") $objs[$i];
-        }
-        
-    for($i = 0; $i < size($objs); $i++)
     {
+//Creates the controls, renames, groups, and places them at the joint. 
+        clear $buffer ; 
+        tokenize $objs[$i] "_" $buffer ; 
+        $tempName = $buffer[0] ;
+        string $controls[0] = `circle -n ($tempName+ ($i + 1) + "_Ctrl")` ;
+        doGroup 0 1 1 ; 
+        rename ($tempName + ($i + 1) + "_Grp") ;
+        matchTransform ($tempName + ($i + 1) + "_Grp") $objs[$i] ;
         
+//        
+        //$controls = ($tempName+ ($i + 1) + "_Ctrl") ;
+        $currentCtrl = ($tempName + ($i + 1) + "_Grp") ;
+        if($controls && $currentCtrl != "null")
+        {
+            select $currentCtrl ;
+            select $controls ; 
+            parent ;
+        }
     }
+  
