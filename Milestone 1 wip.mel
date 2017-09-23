@@ -1,36 +1,51 @@
-string $objs[] = `ls -sl`;
-string $buffer[] ; 
-string $tempName ;
+//I did it so you select all the joints in the Outliner or Viewport before running the script. 
+proc FKSystem()
+{
+    string $objs[] = `ls -sl` ;
+    string $buffer[] ; 
+    
+    
+        for($i = 0; $i < size($objs); $i++)
+            {
+//Creates the controls, renames, groups, and places them at the joint. 
+                clear $buffer ; 
+                tokenize $objs[$i] "_" $buffer ; 
+                string $controls[] = `circle -n ($buffer[0] + ($i + 1) + "_Ctrl") -ch off` ;
+                setAttr -lock true -keyable false -channelBox false .v ;
+                string $groups = `group` ; 
+                rename ($buffer[0] + ($i + 1) + "_Grp") ;
+                matchTransform ($buffer[0] + ($i + 1) + "_Grp") $objs[$i] ;
+                
+//Parents groups and controls.         
+                if ($i >=1 )
+                    {
+                        parent ($buffer[0] + ($i + 1) + "_Grp") ($buffer[0] + ($i) + "_Ctrl") ;   
+                    }
+              
+//Adding parent & scale constraints. 
+                parentConstraint -mo ($buffer[0] + ($i + 1) + "_Ctrl") $objs[$i] ;
+                scaleConstraint -mo ($buffer[0] + ($i + 1) + "_Ctrl") $objs[$i] ;     
+                    
+           }
+           
+//Group hierarchy. 
+        rename `group $objs[0]` Skeleton ;
+        rename `group -em` Controls ;
+        parent ($buffer[0] + 1 + "_Grp") Controls ;
+}
 
+FKSystem();
 
-    for($i = 0; $i < size($objs); $i++)
-        {
-    //Creates the controls, renames, groups, and places them at the joint. 
-            clear $buffer ; 
-            tokenize $objs[$i] "_" $buffer ; 
-            string $tempName = $buffer[0] ;
-            string $controls[] = `circle -n ($tempName+ ($i + 1) + "_Ctrl")` ;
-            string $groups = `group` ; 
-            rename ($tempName + ($i + 1) + "_Grp") ;
-            matchTransform ($tempName + ($i + 1) + "_Grp") $objs[$i] ;
+           
             
-    //Parents groups to controls.         
-            if ($i >=1 )
-                {
-                    parent ($tempName + ($i + 1) + "_Grp") ($tempName+ ($i) + "_Ctrl") ;   
-                }
           
-    //Parent & scale constraints. 
-        parentConstraint -mo ($tempName+ ($i + 1) + "_Ctrl") $objs[$i] ;
-        scaleConstraint -mo ($tempName+ ($i + 1) + "_Ctrl") $objs[$i] ;
+
+         
+           
+           
+           
+
         
-    //Group hierarchy. 
-            
-            if(`objExists "Controls")
-                {
-                    parent  ($tempName + ($i + 1) + "_Grp") ("Controls") ;
-                }
-        }
         
                
         
