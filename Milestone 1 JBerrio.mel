@@ -10,28 +10,28 @@ proc FKSystem()
 //Creates the controls, renames, groups, and places them at the joint. 
                 clear $buffer ; 
                 tokenize $objs[$i] "_" $buffer ; 
-                string $controls[] = `circle -n ($buffer[0] + ($i + 1) + "_Ctrl") -ch off` ;
+                circle -n ($buffer[0] + "_" + ($i + 1) + "_Ctrl") -ch off ;
                 setAttr -lock true -keyable false -channelBox false .v ;
-                string $groups = `group` ; 
-                rename ($buffer[0] + ($i + 1) + "_Grp") ;
-                matchTransform ($buffer[0] + ($i + 1) + "_Grp") $objs[$i] ;
+                group ; 
+                rename ($buffer[0] + "_" + ($i + 1) + "_Grp") ;
+                matchTransform ($buffer[0] + "_" + ($i + 1) + "_Grp") $objs[$i] ;
                 
 //Parents groups and controls.         
                 if ($i >=1 )
                     {
-                        parent ($buffer[0] + ($i + 1) + "_Grp") ($buffer[0] + ($i) + "_Ctrl") ;   
+                        parent ($buffer[0] + "_" + ($i + 1) + "_Grp") ($buffer[0] + "_" + ($i) + "_Ctrl") ;   
                     }
               
 //Adding parent & scale constraints. 
-                parentConstraint -mo ($buffer[0] + ($i + 1) + "_Ctrl") $objs[$i] ;
-                scaleConstraint -mo ($buffer[0] + ($i + 1) + "_Ctrl") $objs[$i] ;     
+                parentConstraint -mo ($buffer[0] + "_" + ($i + 1) + "_Ctrl") $objs[$i] ;
+                scaleConstraint -mo ($buffer[0] + "_" + ($i + 1) + "_Ctrl") $objs[$i] ;     
                     
            }
            
 //Group hierarchy. 
         rename `group $objs[0]` Skeleton ;
         rename `group -em` Controls ;
-        parent ($buffer[0] + 1 + "_Grp") Controls ;
+        parent ($buffer[0] + "_" + 1 + "_Grp") Controls ;
 }
 
 FKSystem();
