@@ -1,0 +1,10 @@
+string $window = "ctrlWindow" ;
+
+if(`window -exists $window` == true)
+    {
+        deleteUI -window $window ;
+    }
+
+$window = `window -title "Control Creator!" $window` ;
+
+showWindow ;
